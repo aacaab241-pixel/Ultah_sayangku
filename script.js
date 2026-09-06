@@ -1,60 +1,70 @@
 // ==========================================
-// 1. PENGATURAN TANGGAL & PIN
+// 1. PENGATURAN PIN RAHASIA
 // ==========================================
-// Sesuaikan tanggal ulang tahun (Format: YYYY-MM-DD)
-const targetDate = new Date("2026-10-12T00:00:00").getTime(); 
-
-// PIN rahasia untuk buka pesan (Format: DDMM)
-const CORRECT_PIN = "1210"; 
-
+const CORRECT_PIN = "1210"; // Ubah tanggal rahasia (Format: DDMM)
 
 // ==========================================
-// 2. LOGIK HIKUNG MUNDUR (COUNTDOWN)
+// 2. KOTAK HADIAH & EFEK CONFETTI
 // ==========================================
-function updateCountdown() {
-  const now = new Date().getTime();
-  const difference = targetDate - now;
+let giftOpened = false;
 
-  if (difference > 0) {
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+function openGift() {
+  if (giftOpened) return;
+  giftOpened = true;
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
+  document.getElementById("giftBox").innerText = "🎉";
+  document.getElementById("giftHint").innerText = "Selamat Ulang Tahun Sayang! ❤️";
+
+  // Trigger Animasi Confetti
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+
+// ==========================================
+// 3. LOGIK KUIS INTERAKTIF
+// ==========================================
+function checkAnswer(isCorrect) {
+  const feedback = document.getElementById("quizFeedback");
+  if (isCorrect) {
+    feedback.innerText = "Pintar! 100 buat kamu! 🥰";
+    confetti({ particleCount: 30, spread: 50, origin: { y: 0.8 } });
   } else {
-    document.getElementById("days").innerText = "0";
-    document.getElementById("hours").innerText = "0";
-    document.getElementById("minutes").innerText = "0";
-    document.getElementById("seconds").innerText = "0";
+    feedback.innerText = "Tetot! Salah 😜 Coba ingat-ingat lagi!";
   }
 }
 
-// Jalankan countdown tiap 1 detik
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-
 // ==========================================
-// 3. LOGIK CEK PIN PESAN RAHASIA
+// 4. LOGIK KEYPAD & CEK PIN
 // ==========================================
+function pressPin(val) {
+  const input = document.getElementById("pinInput");
+  if (input.value.length < 4) {
+    input.value += val;
+  }
+}
+
+function clearPin() {
+  document.getElementById("pinInput").value = "";
+}
+
 function checkPin() {
   const input = document.getElementById("pinInput").value;
   
   if (input === CORRECT_PIN) {
     document.getElementById("pin-form").style.display = "none";
     document.getElementById("secretContent").style.display = "block";
+    confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
   } else {
     alert("PIN salah nih 😜 Coba ingat-ingat lagi tanggal penting kita!");
+    clearPin();
   }
 }
 
-
 // ==========================================
-// 4. LOGIK PEMUTAR MUSIK
+// 5. LOGIK PEMUTAR MUSIK
 // ==========================================
 const music = document.getElementById("bgMusic");
 const playBtn = document.getElementById("playBtn");
