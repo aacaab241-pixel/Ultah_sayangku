@@ -9,12 +9,55 @@
 
 body {
   background-color: #fff0f3;
+  background-image: 
+    radial-gradient(#ffb3c1 0.8px, transparent 0.8px), 
+    linear-gradient(180deg, #fff0f3 0%, #ffe5ec 100%);
+  background-size: 16px 16px, 100% 100%;
   color: #4a4a4a;
   max-width: 480px;
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+}
+
+/* ANIMASI FLOATING HEARTS BACKGROUND */
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 1.2rem;
+  opacity: 0.35;
+  animation: floatUp 8s infinite linear;
+}
+
+.heart:nth-child(1) { left: 10%; animation-duration: 6s; animation-delay: 0s; }
+.heart:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+.heart:nth-child(3) { left: 55%; animation-duration: 7s; animation-delay: 1s; }
+.heart:nth-child(4) { left: 75%; animation-duration: 10s; animation-delay: 3s; }
+.heart:nth-child(5) { left: 88%; animation-duration: 8s; animation-delay: 4s; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-105vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* OVERLAY KADO AWAL (SPLASH SCREEN) */
@@ -62,11 +105,13 @@ body {
   50% { transform: translateY(-12px); }
 }
 
-/* MAIN CONTENT (DISAMBUNGKAN DENGAN ANIMASI FADE IN) */
+/* MAIN CONTENT */
 .main-content {
   display: none;
   opacity: 0;
-  padding-bottom: 80px;
+  padding-bottom: 90px;
+  position: relative;
+  z-index: 1;
   transition: opacity 0.8s ease;
 }
 
@@ -75,20 +120,20 @@ body {
   opacity: 1;
 }
 
-/* SECTION & CARDS */
 section {
   padding: 16px 20px;
 }
 
 .card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(5px);
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 12px;
   box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
 }
 
-h1, h2, h3 {
+h1, h2 {
   color: #ff4d6d;
   text-align: center;
 }
@@ -98,13 +143,6 @@ h2 {
   margin-bottom: 12px;
 }
 
-.sub-text {
-  font-size: 0.8rem;
-  color: #777;
-  text-align: center;
-  margin-bottom: 14px;
-}
-
 /* HERO */
 .hero {
   text-align: center;
@@ -112,8 +150,8 @@ h2 {
 }
 
 .hero-img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #ffb3c1;
@@ -125,35 +163,9 @@ h2 {
   margin-bottom: 6px;
 }
 
-/* QUIZ SECTION */
-.quiz-question {
-  font-size: 0.95rem;
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.quiz-btn {
-  background: #ffe5ec;
-  border: 1px solid #ffb3c1;
-  padding: 10px;
-  border-radius: 10px;
-  color: #4a4a4a;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.quiz-feedback {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: #ff4d6d;
+.hero-sub {
+  font-size: 0.88rem;
+  color: #666;
 }
 
 /* SECRET BOX & KEYPAD */
@@ -162,9 +174,10 @@ h2 {
 }
 
 .pin-hint {
-  font-size: 0.82rem;
-  margin-bottom: 10px;
-  color: #777;
+  font-size: 0.88rem;
+  margin-bottom: 12px;
+  color: #555;
+  line-height: 1.4;
 }
 
 .pin-input {
@@ -207,97 +220,13 @@ h2 {
   display: none;
   text-align: left;
   font-size: 0.92rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #333;
   animation: fadeIn 0.5s ease;
 }
 
-/* FLIP CARDS */
-.flip-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.flip-card {
-  background-color: transparent;
-  height: 65px;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.flip-card.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-front, .flip-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  font-size: 0.88rem;
-}
-
-.flip-front {
-  background-color: #ffe5ec;
-  color: #ff4d6d;
-  font-weight: bold;
-  border: 1px solid #ffb3c1;
-}
-
-.flip-back {
-  background-color: #ff4d6d;
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/* TIMELINE */
-.timeline-item {
-  border-left: 3px solid #ff8fa3;
-  padding-left: 15px;
-  margin-left: 10px;
-  margin-bottom: 16px;
-  position: relative;
-}
-
-.timeline-item::before {
-  content: '❤️';
-  position: absolute;
-  left: -13px;
-  top: -2px;
-  font-size: 0.8rem;
-}
-
-.timeline-date {
-  font-size: 0.78rem;
-  color: #ff4d6d;
-  font-weight: bold;
-}
-
-.timeline-title {
-  font-size: 0.95rem;
-  font-weight: bold;
-  margin: 2px 0 4px;
-}
-
-.timeline-desc {
-  font-size: 0.85rem;
-  color: #666;
+.secret-content p {
+  margin-bottom: 12px;
 }
 
 /* MUSIC PLAYER */
