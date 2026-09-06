@@ -38,42 +38,44 @@
       <p class="hero-sub">Semoga harimu penuh keberkahan dan kebahagiaan.</p>
     </section>
 
-    <!-- PESAN RAHASIA -->
-    <section>
-      <div class="card secret-box">
-        <h2>Pesan Rahasia 💌</h2>
-        <div id="pin-form">
-          <p class="pin-hint">Pertanyaan Kunci: <br/><strong>Tanggal lahirku + tanggal lahirmu = ?</strong></p>
-          <input type="number" id="pinInput" class="pin-input" placeholder="Masukkan Angka..." readonly />
-          
-          <!-- Keypad Numerik -->
-          <div class="keypad">
-            <button onclick="pressPin('1')">1</button>
-            <button onclick="pressPin('2')">2</button>
-            <button onclick="pressPin('3')">3</button>
-            <button onclick="pressPin('4')">4</button>
-            <button onclick="pressPin('5')">5</button>
-            <button onclick="pressPin('6')">6</button>
-            <button onclick="pressPin('7')">7</button>
-            <button onclick="pressPin('8')">8</button>
-            <button onclick="pressPin('9')">9</button>
-            <button onclick="clearPin()">C</button>
-            <button onclick="pressPin('0')">0</button>
-            <button onclick="checkPin()">OK</button>
-          </div>
-        </div>
+<!-- PESAN RAHASIA -->
+<section>
+  <div class="card secret-box">
+    <h2>Pesan Rahasia 💌</h2>
+    <div id="pin-form">
+      <p class="pin-hint">Pertanyaan Kunci: <br/><strong>Tanggal lahirku + tanggal lahirmu = ?</strong></p>
+      <input type="number" id="pinInput" class="pin-input" placeholder="Masukkan Angka..." readonly />
+      
+      <!-- Pesan Error Kustom (Ganti Alert) -->
+      <p id="errorMsg" class="error-msg"></p>
 
-        <div id="secretContent" class="secret-content">
-          <p><strong>Bismillah, Barakallah Fii Umrik Sayangku... ❤️</strong></p>
-          <p>Di hari yang penuh kebahagiaan ini, aku ingin mengucapkan selamat ulang tahun untuk seseorang yang selalu punya tempat paling istimewa di hatiku.</p>
-          <p>Terima kasih ya sudah tumbuh menjadi sosok yang begitu luar biasa, penuh kebaikan, dan selalu melengkapi hari-hariku. Bersamamu, aku belajar banyak hal tentang artinya saling menghargai dan menyayangi dengan tulus.</p>
-          <p>Di usiamu yang baru ini, doa terbaik selalu kupanjatkan untukmu. Semoga Allah SWT senantiasa melimpahkan berkah, kesehatan, keselamatan, dan kelancaran dalam setiap langkah serta impian yang sedang kamu perjuangkan.</p>
-          <p>Semoga kamu selalu dilindungi dalam kebaikan, didekatkan dengan orang-orang baik, dan dijadikan pribadi yang semakin bijaksana serta bahagia dunia hingga akhirat.</p>
-          <p>Aku bersyukur sekali bisa berjalan di sampingmu. Selamat mengulang hari lahir, sayang. <i>I love you so much for the sake of Allah.</i> 🤲✨</p>
-        </div>
+      <!-- Keypad Numerik -->
+      <div class="keypad">
+        <button onclick="pressPin('1')">1</button>
+        <button onclick="pressPin('2')">2</button>
+        <button onclick="pressPin('3')">3</button>
+        <button onclick="pressPin('4')">4</button>
+        <button onclick="pressPin('5')">5</button>
+        <button onclick="pressPin('6')">6</button>
+        <button onclick="pressPin('7')">7</button>
+        <button onclick="pressPin('8')">8</button>
+        <button onclick="pressPin('9')">9</button>
+        <button onclick="clearPin()">C</button>
+        <button onclick="pressPin('0')">0</button>
+        <button onclick="checkPin()">OK</button>
       </div>
-    </section>
+    </div>
 
+    <div id="secretContent" class="secret-content">
+      <p><strong>Bismillah, Barakallah Fii Umrik Sayangku... ❤️</strong></p>
+      <p>Di hari yang penuh kebahagiaan ini, aku ingin mengucapkan selamat ulang tahun untuk seseorang yang selalu punya tempat paling istimewa di hatiku.</p>
+      <p>Terima kasih ya sudah tumbuh menjadi sosok yang begitu luar biasa, penuh kebaikan, dan selalu melengkapi hari-hariku. Bersamamu, aku belajar banyak hal tentang artinya saling menghargai dan menyayangi dengan tulus.</p>
+      <p>Di usiamu yang baru ini, doa terbaik selalu kupanjatkan untukmu. Semoga Allah SWT senantiasa melimpahkan berkah, kesehatan, keselamatan, dan kelancaran dalam setiap langkah serta impian yang sedang kamu perjuangkan.</p>
+      <p>Semoga kamu selalu dilindungi dalam kebaikan, didekatkan dengan orang-orang baik, dan dijadikan pribadi yang semakin bijaksana serta bahagia dunia hingga akhirat.</p>
+      <p>Aku bersyukur sekali bisa berjalan di sampingmu. Selamat mengulang hari lahir, sayang. <i>I love you so much for the sake of Allah.</i> 🤲✨</p>
+    </div>
+  </div>
+</section>
     <!-- FLOATING MUSIC PLAYER -->
     <div class="music-bar">
       <div class="music-info">
