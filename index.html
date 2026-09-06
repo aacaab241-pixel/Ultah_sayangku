@@ -10,131 +10,141 @@
 </head>
 <body>
 
-  <!-- HERO SECTION WITH SURPRISE GIFT -->
-  <section class="hero">
-    <img src="foto-pacar.jpg" alt="Pacar" class="hero-img" />
-    <h1>Happy Birthday, <br/><span id="nama-pacar">Sayang!</span> 🎉</h1>
-    
-    <!-- Surprise Gift Box -->
-    <div class="gift-container" onclick="openGift()">
-      <div class="gift-box" id="giftBox">🎁</div>
-      <p class="gift-hint" id="giftHint">Ketuk kadonya untuk buka kejutan! ✨</p>
+  <!-- SPLASH SCREEN (TAMPILAN AWAL: KOTAK KADO) -->
+  <div id="giftOverlay" class="gift-overlay" onclick="openMainContent()">
+    <div class="gift-card-intro">
+      <div class="gift-box-large">🎁</div>
+      <h2>Ada Hadiah Spesial Buat Kamu!</h2>
+      <p class="gift-hint">Ketuk kadonya untuk membuka ✨</p>
     </div>
-  </section>
+  </div>
 
-  <!-- INTERACTIVE QUIZ SECTION -->
-  <section>
-    <div class="card quiz-box">
-      <h2>Kuis Singkat Kita 🧩</h2>
-      <p id="quizQuestion" class="quiz-question">Di mana tempat pertama kali kita ngobrol panjang?</p>
-      <div id="quizOptions" class="quiz-options">
-        <button class="quiz-btn" onclick="checkAnswer(false)">Bioskop</button>
-        <button class="quiz-btn" onclick="checkAnswer(true)">Coffee Shop</button>
-        <button class="quiz-btn" onclick="checkAnswer(false)">Taman Kota</button>
+  <!-- MAIN CONTENT (TERSEMBUNYI SAAT AWAL DIBUKA) -->
+  <div id="mainContent" class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <img src="foto-pacar.jpg" alt="Pacar" class="hero-img" />
+      <h1>Happy Birthday, <br/><span id="nama-pacar">Sayang!</span> 🎉</h1>
+      <p style="font-size: 0.9rem; color: #777;">Semoga harimu penuh kebahagiaan!</p>
+    </section>
+
+    <!-- INTERACTIVE QUIZ SECTION -->
+    <section>
+      <div class="card quiz-box">
+        <h2>Kuis Singkat Kita 🧩</h2>
+        <p id="quizQuestion" class="quiz-question">Di mana tempat pertama kali kita ngobrol panjang?</p>
+        <div id="quizOptions" class="quiz-options">
+          <button class="quiz-btn" onclick="checkAnswer(false)">Bioskop</button>
+          <button class="quiz-btn" onclick="checkAnswer(true)">Coffee Shop</button>
+          <button class="quiz-btn" onclick="checkAnswer(false)">Taman Kota</button>
+        </div>
+        <p id="quizFeedback" class="quiz-feedback"></p>
       </div>
-      <p id="quizFeedback" class="quiz-feedback"></p>
-    </div>
-  </section>
+    </section>
 
-  <!-- PESAN RAHASIA -->
-  <section>
-    <div class="card secret-box">
-      <h2>Pesan Rahasia 💌</h2>
-      <div id="pin-form">
-        <p class="pin-hint">Masukkan tanggal jadian/lahir kita (Format: DDMM)</p>
-        <input type="number" id="pinInput" class="pin-input" placeholder="Contoh: 1210" readonly />
+    <!-- PESAN RAHASIA -->
+    <section>
+      <div class="card secret-box">
+        <h2>Pesan Rahasia 💌</h2>
+        <div id="pin-form">
+          <p class="pin-hint">Masukkan tanggal jadian/lahir kita (Format: DDMM)</p>
+          <input type="number" id="pinInput" class="pin-input" placeholder="Contoh: 1210" readonly />
+          
+          <!-- Keypad Numerik khusus Sentuhan HP -->
+          <div class="keypad">
+            <button onclick="pressPin('1')">1</button>
+            <button onclick="pressPin('2')">2</button>
+            <button onclick="pressPin('3')">3</button>
+            <button onclick="pressPin('4')">4</button>
+            <button onclick="pressPin('5')">5</button>
+            <button onclick="pressPin('6')">6</button>
+            <button onclick="pressPin('7')">7</button>
+            <button onclick="pressPin('8')">8</button>
+            <button onclick="pressPin('9')">9</button>
+            <button onclick="clearPin()">C</button>
+            <button onclick="pressPin('0')">0</button>
+            <button onclick="checkPin()">OK</button>
+          </div>
+        </div>
+
+        <div id="secretContent" class="secret-content">
+          <p><strong>Halo Sayangku,</strong></p><br/>
+          <p>Selamat ulang tahun ya! Terima kasih sudah selalu ada dan nemenin aku sampai hari ini. Semoga di umur yang baru ini kamu makin sukses, makin sehat, dan semua impianmu bisa terwujud.</p><br/>
+          <p>Aku bersyukur banget bisa kenal dan jalan bareng kamu. I love you so much! ❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLIP CARDS: REASONS WHY I LOVE YOU -->
+    <section>
+      <div class="card">
+        <h2>Kenapa Aku Sayang Kamu ✨</h2>
+        <p class="sub-text">Sentuh kartu di bawah untuk membalik pesannya!</p>
         
-        <!-- Keypad Numerik khusus Sentuhan HP -->
-        <div class="keypad">
-          <button onclick="pressPin('1')">1</button>
-          <button onclick="pressPin('2')">2</button>
-          <button onclick="pressPin('3')">3</button>
-          <button onclick="pressPin('4')">4</button>
-          <button onclick="pressPin('5')">5</button>
-          <button onclick="pressPin('6')">6</button>
-          <button onclick="pressPin('7')">7</button>
-          <button onclick="pressPin('8')">8</button>
-          <button onclick="pressPin('9')">9</button>
-          <button onclick="clearPin()">C</button>
-          <button onclick="pressPin('0')">0</button>
-          <button onclick="checkPin()">OK</button>
-        </div>
-      </div>
-
-      <div id="secretContent" class="secret-content">
-        <p><strong>Halo Sayangku,</strong></p><br/>
-        <p>Selamat ulang tahun ya! Terima kasih sudah selalu ada dan nemenin aku sampai hari ini. Semoga di umur yang baru ini kamu makin sukses, makin sehat, dan semua impianmu bisa terwujud.</p><br/>
-        <p>Aku bersyukur banget bisa kenal dan jalan bareng kamu. I love you so much! ❤️</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FLIP CARDS: REASONS WHY I LOVE YOU -->
-  <section>
-    <div class="card">
-      <h2>Kenapa Aku Sayang Kamu ✨</h2>
-      <p class="sub-text">Sentuh kartu di bawah untuk membalik pesannya!</p>
-      
-      <div class="flip-grid">
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">Alasan #1 ❤️</div>
-            <div class="flip-back">Senyuman kamu selalu bisa bikin suasana hati aku adem.</div>
+        <div class="flip-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Alasan #1 ❤️</div>
+              <div class="flip-back">Senyuman kamu selalu bisa bikin suasana hati aku adem.</div>
+            </div>
           </div>
-        </div>
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">Alasan #2 ☕</div>
-            <div class="flip-back">Kamu selalu sabar dengerin cerita/curhat aku panjang lebar.</div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Alasan #2 ☕</div>
+              <div class="flip-back">Kamu selalu sabar dengerin cerita/curhat aku panjang lebar.</div>
+            </div>
           </div>
-        </div>
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">Alasan #3 🌟</div>
-            <div class="flip-back">Perhatian kamu pada hal-hal kecil yang selalu bikin terharu.</div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Alasan #3 🌟</div>
+              <div class="flip-back">Perhatian kamu pada hal-hal kecil yang selalu bikin terharu.</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TIMELINE KENANGAN -->
-  <section>
-    <div class="card">
-      <h2>Perjalanan Kita 🗓️</h2>
-      
-      <div class="timeline-item">
-        <div class="timeline-date">12 Oktober 2024</div>
-        <div class="timeline-title">Pertama Kali Ketemu</div>
-        <div class="timeline-desc">Hari di mana kita pertama kali ngobrol panjang di coffee shop.</div>
+    <!-- TIMELINE KENANGAN -->
+    <section>
+      <div class="card">
+        <h2>Perjalanan Kita 🗓️</h2>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">12 Oktober 2024</div>
+          <div class="timeline-title">Pertama Kali Ketemu</div>
+          <div class="timeline-desc">Hari di mana kita pertama kali ngobrol panjang di coffee shop.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">25 Desember 2024</div>
+          <div class="timeline-title">Jalan-jalan Pertama</div>
+          <div class="timeline-desc">Foto bareng pertama kali di taman kota.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Hari Ini</div>
+          <div class="timeline-title">Ulang Tahun Kamu</div>
+          <div class="timeline-desc">Memulai babak baru dengan banyak petualangan seru ke depan!</div>
+        </div>
       </div>
+    </section>
 
-      <div class="timeline-item">
-        <div class="timeline-date">25 Desember 2024</div>
-        <div class="timeline-title">Jalan-jalan Pertama</div>
-        <div class="timeline-desc">Foto bareng pertama kali di taman kota.</div>
+    <!-- FLOATING MUSIC PLAYER -->
+    <div class="music-bar">
+      <div class="music-info">
+        <strong>Lagu Favorit Kita 🎵</strong>
+        <div class="music-sub">Musik Latar</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">Hari Ini</div>
-        <div class="timeline-title">Ulang Tahun Kamu</div>
-        <div class="timeline-desc">Memulai babak baru dengan banyak petualangan seru ke depan!</div>
-      </div>
+      <!-- Ganti lagu.mp3 dengan nama file musikmu -->
+      <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+      <button class="music-btn" onclick="toggleMusic()" id="playBtn">⏸</button>
     </div>
-  </section>
 
-  <!-- FLOATING MUSIC PLAYER -->
-  <div class="music-bar">
-    <div class="music-info">
-      <strong>Lagu Favorit Kita 🎵</strong>
-      <div class="music-sub">Play untuk musik latar</div>
-    </div>
-    <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
-    <button class="music-btn" onclick="toggleMusic()" id="playBtn">▶</button>
   </div>
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
