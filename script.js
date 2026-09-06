@@ -1,7 +1,6 @@
 // ==========================================
 // 1. PENGATURAN JAWABAN KUNCI RAHASIA
 // ==========================================
-// Kunci Jawaban: Tanggal lahirku + tanggal lahirmu = 37
 const CORRECT_PIN = "37"; 
 
 // ==========================================
@@ -18,14 +17,12 @@ function openMainContent() {
     overlay.style.display = "none";
     mainContent.classList.add("show");
 
-    // Efek Confetti
     confetti({
       particleCount: 120,
       spread: 80,
       origin: { y: 0.5 }
     });
 
-    // Otomatis Putar Lagu Islami Romantis (Maher Zain)
     music.play().then(() => {
       playBtn.innerText = "⏸";
     }).catch(err => {
@@ -41,25 +38,44 @@ function openMainContent() {
 // ==========================================
 function pressPin(val) {
   const input = document.getElementById("pinInput");
+  const errorMsg = document.getElementById("errorMsg");
+  
+  // Sembunyikan pesan error saat mulai mengetik lagi
+  errorMsg.style.display = "none";
+  input.classList.remove("shake");
+
   if (input.value.length < 4) {
     input.value += val;
   }
 }
 
 function clearPin() {
-  document.getElementById("pinInput").value = "";
+  const input = document.getElementById("pinInput");
+  const errorMsg = document.getElementById("errorMsg");
+  
+  input.value = "";
+  errorMsg.style.display = "none";
+  input.classList.remove("shake");
 }
 
 function checkPin() {
-  const input = document.getElementById("pinInput").value;
+  const input = document.getElementById("pinInput");
+  const errorMsg = document.getElementById("errorMsg");
   
-  if (input === CORRECT_PIN) {
+  if (input.value === CORRECT_PIN) {
     document.getElementById("pin-form").style.display = "none";
     document.getElementById("secretContent").style.display = "block";
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
   } else {
-    alert("Hitungannya belum tepat nih 😜 Coba dijumlahkan lagi ya!");
-    clearPin();
+    // Tampilkan pesan error manis & efek getar pada input
+    errorMsg.innerText = "Hitungannya belum tepat nih 😜 Coba hitung lagi ya!";
+    errorMsg.style.display = "block";
+    
+    input.classList.add("shake");
+    
+    setTimeout(() => {
+      clearPin();
+    }, 600);
   }
 }
 
