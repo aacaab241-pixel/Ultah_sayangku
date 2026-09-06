@@ -1,7 +1,8 @@
 // ==========================================
-// 1. PENGATURAN PIN RAHASIA
+// 1. PENGATURAN JAWABAN KUNCI RAHASIA
 // ==========================================
-const CORRECT_PIN = "1210"; // Ubah tanggal rahasia (Format: DDMM)
+// Kunci Jawaban: Tanggal lahirku + tanggal lahirmu = 37
+const CORRECT_PIN = "37"; 
 
 // ==========================================
 // 2. LOGIK BUKA KADO UTAMA (SPLASH SCREEN)
@@ -12,22 +13,19 @@ function openMainContent() {
   const music = document.getElementById("bgMusic");
   const playBtn = document.getElementById("playBtn");
 
-  // Sembunyikan Overlay Kado
   overlay.style.opacity = "0";
   setTimeout(() => {
     overlay.style.display = "none";
-    
-    // Tampilkan Konten Utama
     mainContent.classList.add("show");
 
-    // Efek Kembang Api / Confetti
+    // Efek Confetti
     confetti({
       particleCount: 120,
       spread: 80,
       origin: { y: 0.5 }
     });
 
-    // Otomatis Putar Musik Latar
+    // Otomatis Putar Lagu Islami Romantis (Maher Zain)
     music.play().then(() => {
       playBtn.innerText = "⏸";
     }).catch(err => {
@@ -39,20 +37,7 @@ function openMainContent() {
 }
 
 // ==========================================
-// 3. LOGIK KUIS INTERAKTIF
-// ==========================================
-function checkAnswer(isCorrect) {
-  const feedback = document.getElementById("quizFeedback");
-  if (isCorrect) {
-    feedback.innerText = "Pintar! 100 buat kamu! 🥰";
-    confetti({ particleCount: 30, spread: 50, origin: { y: 0.8 } });
-  } else {
-    feedback.innerText = "Tetot! Salah 😜 Coba ingat-ingat lagi!";
-  }
-}
-
-// ==========================================
-// 4. LOGIK KEYPAD & CEK PIN
+// 3. LOGIK KEYPAD & CEK PIN
 // ==========================================
 function pressPin(val) {
   const input = document.getElementById("pinInput");
@@ -71,15 +56,15 @@ function checkPin() {
   if (input === CORRECT_PIN) {
     document.getElementById("pin-form").style.display = "none";
     document.getElementById("secretContent").style.display = "block";
-    confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
   } else {
-    alert("PIN salah nih 😜 Coba ingat-ingat lagi tanggal penting kita!");
+    alert("Hitungannya belum tepat nih 😜 Coba dijumlahkan lagi ya!");
     clearPin();
   }
 }
 
 // ==========================================
-// 5. LOGIK PEMUTAR MUSIK
+// 4. LOGIK PEMUTAR MUSIK
 // ==========================================
 const music = document.getElementById("bgMusic");
 const playBtn = document.getElementById("playBtn");
