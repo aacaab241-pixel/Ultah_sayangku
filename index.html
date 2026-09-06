@@ -5,27 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Selamat Ulang Tahun Sayang! ❤️</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Canvas Confetti untuk Efek Kejutan -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION WITH SURPRISE GIFT -->
   <section class="hero">
-    <!-- Ganti URL Foto Pacar kamu di bawah -->
     <img src="https://via.placeholder.com/150" alt="Pacar" class="hero-img" />
     <h1>Happy Birthday, <br/><span id="nama-pacar">Sayang!</span> 🎉</h1>
-    <p>Semoga harimu penuh kebahagiaan dan senyuman.</p>
+    
+    <!-- Surprise Gift Box -->
+    <div class="gift-container" onclick="openGift()">
+      <div class="gift-box" id="giftBox">🎁</div>
+      <p class="gift-hint" id="giftHint">Ketuk kadonya untuk buka kejutan! ✨</p>
+    </div>
   </section>
 
-  <!-- COUNTDOWN TIMER -->
+  <!-- INTERACTIVE QUIZ SECTION -->
   <section>
-    <div class="card">
-      <h2>Momen Spesial 🎂</h2>
-      <div class="countdown-grid">
-        <div class="time-box"><span id="days">0</span><label>Hari</label></div>
-        <div class="time-box"><span id="hours">0</span><label>Jam</label></div>
-        <div class="time-box"><span id="minutes">0</span><label>Menit</label></div>
-        <div class="time-box"><span id="seconds">0</span><label>Detik</label></div>
+    <div class="card quiz-box">
+      <h2>Kuis Singkat Kita 🧩</h2>
+      <p id="quizQuestion" class="quiz-question">Di mana tempat pertama kali kita ngobrol panjang?</p>
+      <div id="quizOptions" class="quiz-options">
+        <button class="quiz-btn" onclick="checkAnswer(false)">Bioskop</button>
+        <button class="quiz-btn" onclick="checkAnswer(true)">Coffee Shop</button>
+        <button class="quiz-btn" onclick="checkAnswer(false)">Taman Kota</button>
       </div>
+      <p id="quizFeedback" class="quiz-feedback"></p>
     </div>
   </section>
 
@@ -34,17 +41,61 @@
     <div class="card secret-box">
       <h2>Pesan Rahasia 💌</h2>
       <div id="pin-form">
-        <p class="pin-hint">
-          Masukkan tanggal jadian / tanggal lahir kita (Format: DDMM)
-        </p>
-        <input type="number" id="pinInput" class="pin-input" placeholder="Contoh: 1210" />
-        <button onclick="checkPin()" class="btn-submit">Buka Pesan</button>
+        <p class="pin-hint">Masukkan tanggal jadian/lahir kita (Format: DDMM)</p>
+        <input type="number" id="pinInput" class="pin-input" placeholder="Contoh: 1210" readonly />
+        
+        <!-- Keypad Numerik khusus Sentuhan HP -->
+        <div class="keypad">
+          <button onclick="pressPin('1')">1</button>
+          <button onclick="pressPin('2')">2</button>
+          <button onclick="pressPin('3')">3</button>
+          <button onclick="pressPin('4')">4</button>
+          <button onclick="pressPin('5')">5</button>
+          <button onclick="pressPin('6')">6</button>
+          <button onclick="pressPin('7')">7</button>
+          <button onclick="pressPin('8')">8</button>
+          <button onclick="pressPin('9')">9</button>
+          <button onclick="clearPin()">C</button>
+          <button onclick="pressPin('0')">0</button>
+          <button onclick="checkPin()">OK</button>
+        </div>
       </div>
 
       <div id="secretContent" class="secret-content">
         <p><strong>Halo Sayangku,</strong></p><br/>
         <p>Selamat ulang tahun ya! Terima kasih sudah selalu ada dan nemenin aku sampai hari ini. Semoga di umur yang baru ini kamu makin sukses, makin sehat, dan semua impianmu bisa terwujud.</p><br/>
         <p>Aku bersyukur banget bisa kenal dan jalan bareng kamu. I love you so much! ❤️</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLIP CARDS: REASONS WHY I LOVE YOU -->
+  <section>
+    <div class="card">
+      <h2>Kenapa Aku Sayang Kamu ✨</h2>
+      <p class="sub-text">Sentuh kartu di bawah untuk membalik pesannya!</p>
+      
+      <div class="flip-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">Alasan #1 ❤️</div>
+            <div class="flip-back">Senyuman kamu selalu bisa bikin suasana hati aku adem.</div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">Alasan #2 ☕</div>
+            <div class="flip-back">Kamu selalu sabar dengerin cerita/curhat aku panjang lebar.</div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">Alasan #3 🌟</div>
+            <div class="flip-back">Perhatian kamu pada hal-hal kecil yang selalu bikin terharu.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -74,23 +125,12 @@
     </div>
   </section>
 
-  <!-- REASONS WHY I LOVE YOU -->
-  <section>
-    <div class="card">
-      <h2>Kenapa Aku Sayang Kamu ✨</h2>
-      <div class="reason-card">1. Senyuman kamu selalu bikin adem.</div>
-      <div class="reason-card">2. Selalu sabar dengerin cerita aku.</div>
-      <div class="reason-card">3. Cara kamu perhatian sama hal-hal kecil.</div>
-    </div>
-  </section>
-
   <!-- FLOATING MUSIC PLAYER -->
   <div class="music-bar">
     <div class="music-info">
       <strong>Lagu Favorit Kita 🎵</strong>
       <div class="music-sub">Play untuk musik latar</div>
     </div>
-    <!-- Ganti URL file mp3 di src di bawah ini -->
     <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
     <button class="music-btn" onclick="toggleMusic()" id="playBtn">▶</button>
   </div>
