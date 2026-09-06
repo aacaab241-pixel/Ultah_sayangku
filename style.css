@@ -271,6 +271,29 @@ h2 {
   cursor: pointer;
 }
 
+/* PESAN ERROR KUSTOM */
+.error-msg {
+  display: none;
+  color: #d90429;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: -6px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ANIMASI GETAR PADA INPUT SAAT SALAH */
+.shake {
+  animation: shake 0.4s ease-in-out;
+  border-color: #ff4d6d !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
