@@ -4,23 +4,38 @@
 const CORRECT_PIN = "1210"; // Ubah tanggal rahasia (Format: DDMM)
 
 // ==========================================
-// 2. KOTAK HADIAH & EFEK CONFETTI
+// 2. LOGIK BUKA KADO UTAMA (SPLASH SCREEN)
 // ==========================================
-let giftOpened = false;
+function openMainContent() {
+  const overlay = document.getElementById("giftOverlay");
+  const mainContent = document.getElementById("mainContent");
+  const music = document.getElementById("bgMusic");
+  const playBtn = document.getElementById("playBtn");
 
-function openGift() {
-  if (giftOpened) return;
-  giftOpened = true;
+  // Sembunyikan Overlay Kado
+  overlay.style.opacity = "0";
+  setTimeout(() => {
+    overlay.style.display = "none";
+    
+    // Tampilkan Konten Utama
+    mainContent.classList.add("show");
 
-  document.getElementById("giftBox").innerText = "🎉";
-  document.getElementById("giftHint").innerText = "Selamat Ulang Tahun Sayang! ❤️";
+    // Efek Kembang Api / Confetti
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.5 }
+    });
 
-  // Trigger Animasi Confetti
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+    // Otomatis Putar Musik Latar
+    music.play().then(() => {
+      playBtn.innerText = "⏸";
+    }).catch(err => {
+      console.log("Autoplay diblokir oleh browser:", err);
+      playBtn.innerText = "▶";
+    });
+
+  }, 500);
 }
 
 // ==========================================
