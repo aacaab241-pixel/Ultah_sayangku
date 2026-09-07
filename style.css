@@ -109,7 +109,7 @@ body {
 .main-content {
   display: none;
   opacity: 0;
-  padding-bottom: 90px;
+  padding-bottom: 40px;
   position: relative;
   z-index: 1;
   transition: opacity 0.8s ease;
@@ -193,6 +193,27 @@ h2 {
   background: #fff0f3;
 }
 
+.error-msg {
+  display: none;
+  color: #d90429;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: -6px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+  border-color: #ff4d6d !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -229,72 +250,42 @@ h2 {
   margin-bottom: 12px;
 }
 
-/* MUSIC PLAYER */
-.music-bar {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.divider {
+  border: 0;
+  height: 1px;
+  background: #ffb3c1;
+  margin: 20px 0 15px;
+}
+
+.gallery-title {
+  font-size: 1.1rem;
+  color: #ff4d6d;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* GALERI FOTO GRID */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery-img {
   width: 100%;
-  max-width: 480px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 12px 20px;
-  border-top: 1px solid #ffe5ec;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
-  z-index: 100;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #ffe5ec;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
 }
 
-.music-info {
-  font-size: 0.85rem;
-}
-
-.music-sub {
-  font-size: 0.72rem;
-  color: #777;
-}
-
-.music-btn {
-  background: #ff4d6d;
-  color: white;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* PESAN ERROR KUSTOM */
-.error-msg {
-  display: none;
-  color: #d90429;
-  font-size: 0.82rem;
-  font-weight: 600;
-  margin-top: -6px;
-  margin-bottom: 10px;
-  animation: fadeIn 0.3s ease;
-}
-
-/* ANIMASI GETAR PADA INPUT SAAT SALAH */
-.shake {
-  animation: shake 0.4s ease-in-out;
-  border-color: #ff4d6d !important;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+.gallery-img:active {
+  transform: scale(0.97);
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
+  }
