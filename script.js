@@ -5,7 +5,7 @@ const CORRECT_PIN = "37";
 
 // Tentukan berapa jumlah foto yang kamu punya di GitHub (1.jpg, 2.jpg, dst)
 // Jika nanti upload foto ke-3 (3.jpg), ubah angka ini menjadi 3
-const totalPhotos = 3; 
+const totalPhotos = 5; 
 
 // ==========================================
 // 2. LOGIK BUKA KADO UTAMA (SPLASH SCREEN)
